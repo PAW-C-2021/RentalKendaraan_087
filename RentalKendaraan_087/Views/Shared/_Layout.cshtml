@@ -6,6 +6,9 @@
     <title>@ViewData["Title"] - RentalKendaraan_087</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" 
+          crossorigin="anonymous" />
 </head>
 <body>
     <header>
@@ -20,6 +23,19 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown">Daftar Rental<b class="caret"></b></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Customers" asp-action="Index">Customer</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Peminjamen" asp-action="Index">Peminjaman</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Pengembalians" asp-action="Index">Pengembalian</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Kendaraans" asp-action="Index">Kendaraan</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="JenisKendaraans" asp-action="Index">JenisKendaraan</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="KondisiKendaraans" asp-action="Index">KondisiKendaraan</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Jaminans" asp-action="Index">Jaminan</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Genders" asp-action="Index">Gender</a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

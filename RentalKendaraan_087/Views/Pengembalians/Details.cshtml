@@ -11,28 +11,28 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TglPengembalian)
+            @Html.DisplayName("Tanggal Pengembalian")
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TglPengembalian)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Denda)
+            @Html.DisplayName("Denda")
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Denda)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdKondisiNavigation)
+            @Html.DisplayName("Kondisi")
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdKondisiNavigation.IdKondisi)
+            @Html.DisplayFor(model => model.IdKondisiNavigation.NamaKondisi)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdPeminjamanNavigation)
+            @Html.DisplayName("Tanggal Peminjaman")
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdPeminjamanNavigation.IdPeminjaman)
+            @Html.DisplayFor(model => model.IdPeminjamanNavigation.TglPeminjaman)
         </dd>
     </dl>
 </div>
