@@ -9,6 +9,14 @@
 <p>
     <a asp-action="Create"><i class="fa fa-plus fa-lg"></i> Tambah Data</a>
 </p>
+@using (Html.BeginForm("Index","Kendaraans",FormMethod.Get))
+{
+    <p>
+        Ketersediaan : @Html.DropDownList("ktsd","Pilih Ketersediaan")
+        Cari Data : @Html.TextBox("searchString")
+        <input type="submit" value="Filter" />
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
