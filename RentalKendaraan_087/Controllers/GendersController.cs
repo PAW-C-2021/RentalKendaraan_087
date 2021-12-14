@@ -19,7 +19,7 @@ namespace RentalKendaraan_087.Controllers
         }
 
         // GET: Genders
-        public async Task<IActionResult> Index(string ktsd, string searchString)
+        public async Task<IActionResult> Index(string ktsd, string searchString, string sortOrder, string currentFilter, int? pageNumber)
         {
             var ktsdList = new List<string>();
             var ktsdQuery = from d in _context.Genders orderby d.NamaGender select d.NamaGender;
@@ -34,7 +34,34 @@ namespace RentalKendaraan_087.Controllers
             {
                 menu = menu.Where(s => s.NamaGender.Contains(searchString));
             }
-            return View(await menu.ToListAsync());
+            // Membuat PageList
+            ViewData["CurrentSort"] = sortOrder;
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewData["CurrentFilter"] = searchString;
+
+            int pageSize = 5;
+
+            // Membuat Sort Order
+            ViewData["NameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    menu = menu.OrderByDescending(s => s.NamaGender);
+                    break;
+                default:
+                    menu = menu.OrderBy(s => s.NamaGender);
+                    break;
+            }
+
+            return View(await PaginatedList<Gender>.CreateAsync(menu.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Genders/Details/5

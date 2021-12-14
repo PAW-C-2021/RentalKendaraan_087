@@ -19,7 +19,7 @@ namespace RentalKendaraan_087.Controllers
         }
 
         // GET: Pengembalians
-        public async Task<IActionResult> Index(string ktsd, string searchString)
+        public async Task<IActionResult> Index(string ktsd, string searchString, string sortOrder, string currentFilter, int? pageNumber)
         {
             var ktsdList = new List<string>();
             var ktsdQuery = from d in _context.Pengembalians orderby d.IdKondisiNavigation.NamaKondisi select d.IdKondisiNavigation.NamaKondisi;
@@ -34,7 +34,34 @@ namespace RentalKendaraan_087.Controllers
             {
                 menu = menu.Where(s => s.TglPengembalian.ToString().Contains(searchString));
             }
-            return View(await menu.ToListAsync());
+            // Membuat PageList
+            ViewData["CurrentSort"] = sortOrder;
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewData["CurrentFilter"] = searchString;
+
+            int pageSize = 5;
+
+            // Membuat Sort Order
+            ViewData["DateSortParam"] = String.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
+
+            switch (sortOrder)
+            {
+                case "date_desc":
+                    menu = menu.OrderByDescending(s => s.TglPengembalian);
+                    break;
+                default:
+                    menu = menu.OrderBy(s => s.TglPengembalian);
+                    break;
+            }
+
+            return View(await PaginatedList<Pengembalian>.CreateAsync(menu.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Pengembalians/Details/5
